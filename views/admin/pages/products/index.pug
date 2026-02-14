@@ -44,11 +44,44 @@ block main
                             td #{item.price}$
                             td 
                                 if(item.status == "active")
-                                    a.badge.bg-success(href="#") Hoạt động
+                                    //- href=`/admin/products/change-status/inactive/${item.id}`
+                                    //- dont use the above link cause the default method is GET while we have to use PATCH
+
+                                    //- javascript:;  => telling nodejs that we use javascript to handle the logic
+                                    a.badge.bg-success(
+                                        href="javascript:;"
+                                        data-status="active"
+                                        data-id=item.id
+                                        button-change-status
+                                    ) Hoạt động
                                 else 
-                                    a.badge.bg-danger(href="#") Dừng hoạt động
+                                    a.badge.bg-danger(
+                                        href="javascript:;"
+                                        data-status="inactive"
+                                        data-id=item.id
+                                        button-change-status
+                                    ) Dừng hoạt động
                             td  
                                 button(class="btn btn-warning btn-sm") Sửa
                                 button(class="btn btn-danger btn-sm ms-1") Xóa 
     
     +pagination(pagination)
+
+    //- If we have the method-override (e.g to be PATCH)
+    //- then the method of the form ALWAYS HAS TO BE "POST"
+    form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path=`${prefixAdmin}/products/change-status`
+    )
+        input(
+            type="hidden" 
+            name="page" 
+            value=page
+        )
+        //- dont declare this as one of the form's attributes cause form doesnt have 
+        //- the "page" attribute
+
+
+    script(src="/admin/js/product.js")

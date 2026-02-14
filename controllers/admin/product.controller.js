@@ -47,8 +47,12 @@ module.exports.index = async (req, res) => {
 
     const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip);
 
-
-
+    let page;
+    if (req.query.page) {
+        page = req.query.page;
+    } else {
+        page = 1;
+    }
 
 
 
@@ -57,6 +61,21 @@ module.exports.index = async (req, res) => {
         products: products,
         filterStatus: filterStatus,
         keyword: objectSearch.keyword,
-        pagination: objectPagination
+        pagination: objectPagination,
+        page: parseInt(req.query.page)
     })
 }
+
+// [PATCH] /admin/products/change-status/:status/:id
+module.exports.changeStatus = async (req, res) => {
+    const status = req.params.status;
+    const id = req.params.id;
+
+    await Product.updateOne({ _id: id }, { status: status });
+
+    const page = req.query.page;
+
+    res.redirect(`/admin/products?page=${page}`);
+
+}
+

@@ -1,4 +1,5 @@
 const express = require("express");
+const methodOverride = require("method-override");
 
 // to use env file 
 require('dotenv').config();
@@ -22,6 +23,7 @@ const app = express();
 // get the port variable inside the env file 
 const port = process.env.PORT;
 
+app.use(methodOverride("_method"));
 
 // to use pug
 app.set("views", "./views");
