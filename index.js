@@ -1,5 +1,6 @@
 const express = require("express");
 const methodOverride = require("method-override");
+const bodyParser = require("body-parser");
 
 // to use env file 
 require('dotenv').config();
@@ -24,6 +25,9 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(methodOverride("_method"));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // to use pug
 app.set("views", "./views");

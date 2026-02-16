@@ -73,9 +73,34 @@ module.exports.changeStatus = async (req, res) => {
 
     await Product.updateOne({ _id: id }, { status: status });
 
-    const page = req.query.page;
-
+    const page = req.body.page;
     res.redirect(`/admin/products?page=${page}`);
-
 }
 
+// [PATCH] /admin/products/change-multi
+module.exports.changeMulti = async (req, res) => {
+    // when we pass the data into the form this console log line
+    // should print out the request body but at the moment it returns
+    // undefined => we have to install a SEPARATE LIBIRARY (body parser) to get req.body property
+    const type = req.body.type;
+
+    // convert lại thành 1 mảng
+    const ids = req.body.ids.split(", ");
+
+    switch (type) {
+        case "active":
+            await Product.updateMany({ _id: { $in: ids } }, { status: "active"});
+            break;
+        case "inactive":
+            await Product.updateMany({ _id: { $in: ids }}, { status: "inactive" });
+            break;
+        default:
+            break;
+    }
+
+    // req.query = GET
+    // req.body = POST - PATCH - PUT
+
+    const page = req.body.page || 1;
+    res.redirect(`/admin/products?page=${page}`);
+}

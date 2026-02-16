@@ -9,4 +9,6 @@ router.get("/", controller.index)
 // :name = assign dynamic data
 router.patch("/change-status/:status/:id", controller.changeStatus)
 
+router.patch("/change-multi", controller.changeMulti);
+
 module.exports = router;

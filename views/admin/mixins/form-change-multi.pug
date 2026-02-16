@@ -1,0 +1,23 @@
+mixin form-change-multi(action, page)
+    form(
+        action= action
+        method="POST"
+        form-change-multi
+    )
+        //- Hidden input = cách duy nhất để form gửi thêm dữ liệu mà user không cần nhập
+        input(type="hidden" name="page" value=page)
+        .d-flex.align-items-start 
+            .form-group 
+                select(name="type" class="form-control")
+                    option(value="active") Hoạt động
+                    option(value="inactive") Dừng hoạt động
+            .form-group 
+                input(
+                    type="text"
+                    name="ids"
+                    value=""
+                    class="form-control d-none"
+                )
+                //- lúc đầu hiển thị ô input này để dễ hình dung
+                //- sau khi đã xử lý xong front-end có thể ẩn đi
+            button(type="submit" class="btn btn-primary") Áp dụng
