@@ -109,7 +109,16 @@ module.exports.changeMulti = async (req, res) => {
 module.exports.deleteItem = async (req, res) => {
     const id = req.params.id;
 
-    await Product.deleteOne( { _id: id });
+    // delete permanently
+    // await Product.deleteOne( { _id: id });
+
+    // delete temporarily (update "deleted")
+    await Product.updateOne( { _id: id }, { 
+        deleted: true,
+        deletedAt: new Date()
+     });
+    // patch is also accepted, but we want to follow the correct logic
+    // when users actually use the app (delete an item)
 
     redirectHelper(req, res);
 }
