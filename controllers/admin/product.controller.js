@@ -109,6 +109,7 @@ module.exports.changeMulti = async (req, res) => {
                 deleted: true,
                 deletedAt: new Date()
             });
+            req.flash("success", `Đã xóa thành công ${ids.length} sản phẩm!`);
             break;
         // Change-position
         case "change-position":
@@ -141,6 +142,8 @@ module.exports.deleteItem = async (req, res) => {
      });
     // patch is also accepted, but we want to follow the correct logic
     // when users actually use the app (delete an item)
+
+    req.flash("success", `Đã xóa thành công sản phẩm!`);
 
     redirectHelper(req, res);
 }
