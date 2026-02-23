@@ -133,7 +133,18 @@ if(formChangeMulti) {
 
             inputsChecked.forEach(input => {
                 const id = input.value;
-                ids.push(id);
+
+                if(actionSelect == "change-position") {
+                    const position = input
+                        .closest("tr")
+                        .querySelector("input[name='position']")
+                        .value;
+                    
+                    ids.push(`${id}-${position}`);
+                } else {
+                    ids.push(id)
+                }
+                
             });
             
             // form input không lưu được array nên phải convert thành string
