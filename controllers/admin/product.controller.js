@@ -3,6 +3,8 @@ const Product = require("../../models/product.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
+const redirectHelper = require("../../helpers/redirect");
+const redirect = require("../../helpers/redirect");
 
 // [GET] /admin/products
 
@@ -73,8 +75,7 @@ module.exports.changeStatus = async (req, res) => {
 
     await Product.updateOne({ _id: id }, { status: status });
 
-    const page = req.body.page;
-    res.redirect(`/admin/products?page=${page}`);
+    redirectHelper(req, res);
 }
 
 // [PATCH] /admin/products/change-multi
@@ -101,6 +102,5 @@ module.exports.changeMulti = async (req, res) => {
     // req.query = GET
     // req.body = POST - PATCH - PUT
 
-    const page = req.body.page || 1;
-    res.redirect(`/admin/products?page=${page}`);
+    redirectHelper(req, res);
 }
