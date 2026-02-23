@@ -2,6 +2,12 @@ const express = require("express");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 
+// to use notifications for front-end
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
+
 // to use env file 
 require('dotenv').config();
 
@@ -32,6 +38,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // to use pug
 app.set("views", "./views");
 app.set("view engine", "pug");
+
+// Flash
+app.use(cookieParser("BOMAYLANHAT"));
+app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.message = {
+        success: req.flash("success")
+    };
+    next();
+});
+// End Flash
 
 // App Local Variables: all these variables will exist in all pug files
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
