@@ -10,9 +10,17 @@ const productSchema = new mongoose.Schema({
     thumbnail: String,
     status: String,
     position: Number,
-    deleted: Boolean,
-    deletedAt: Date
+    deleted: {
+        type: Boolean,
+        default: false
+    },
+    deletedAt: Date,
+}, {
+    timestamps: true  
 });
+
+// timestamps = true
+// => automatically has createAt & updateAt
 
 //            model name (used in code) - rules to follow - mongoDB collection name
 const Product = mongoose.model("Product", productSchema, "products");
