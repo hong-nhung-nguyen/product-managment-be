@@ -8,6 +8,7 @@ const paginationHelper = require("../../helpers/pagination");
 const redirectHelper = require("../../helpers/redirect");
 const redirect = require("../../helpers/redirect");
 
+
 // [GET] /admin/products
 
 module.exports.index = async (req, res) => {
@@ -161,7 +162,8 @@ module.exports.create = async (req, res) => {
 
 // [POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
-    console.log(req.file);
+    // console.log(req.file);
+
 
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
@@ -178,7 +180,12 @@ module.exports.createPost = async (req, res) => {
     // req.file có 1 biến nữa (path) gần giống với "filename"
     // nhưng mà có "public" đứng trước
     // không chọn "path" vì khi search sẽ không có "public"
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
+
+    // if user tampers with public js by deleting "required" for the title input
+    // we cant set the name for the image => server dies
+    if(req.file) {
+        req.body.thumbnail = `/uploads/${req.file.filename}`;
+    }
 
     // create a new product
 

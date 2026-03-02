@@ -7,6 +7,7 @@ const upload = multer({ storage: storageMulter() });
 
 
 const controller = require("../../controllers/admin/product.controller")
+const validate = require("../../validates/admin/product.validate");
 
 router.get("/", controller.index)
 
@@ -23,7 +24,12 @@ router.get("/create", controller.create);
 router.post(
     "/create", 
     upload.single("thumbnail"),
+    validate.createPost,
     controller.createPost
 );
+// middleware
+
+// validate.createPost() will call the function immediately => nothing yet to know => crash
+// validate.createPost just passing the function
 
 module.exports = router;
