@@ -24,12 +24,22 @@ router.get("/create", controller.create);
 router.post(
     "/create", 
     upload.single("thumbnail"),
-    validate.createPost,
+    validate.createPost(() => "/admin/products/create"),
     controller.createPost
 );
 // middleware
 
 // validate.createPost() will call the function immediately => nothing yet to know => crash
 // validate.createPost just passing the function
+
+router.get("/edit/:id", controller.edit);
+
+router.patch(
+    "/edit/:id", 
+    upload.single("thumbnail"),
+    validate.createPost((req) => `/admin/products/edit/${req.params.id}`),
+    controller.editPatch
+);
+
 
 module.exports = router;
