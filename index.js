@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 
@@ -52,6 +53,10 @@ app.use((req, res, next) => {
     next();
 });
 // End Flash
+
+// TinyMC
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+// End TinyMCE
 
 // App Local Variables: all these variables will exist in all pug files
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
