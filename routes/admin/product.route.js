@@ -27,7 +27,7 @@ router.post(
     "/create", 
     upload.single("thumbnail"),
     uploadCloud.upload,
-    validate.createPost(() => "/admin/products/create"),
+    validate.createPost("/admin/products/create"),
     controller.createPost
 );
 // middleware
