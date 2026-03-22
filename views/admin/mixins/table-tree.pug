@@ -1,0 +1,62 @@
+mixin table-tree(records, level = 1)
+    each item, index in records
+                    tr 
+                        td 
+                            input(
+                                type="checkbox"
+                                name="id"
+                                value=item.id
+                            )
+                        td #{index + 1}
+                        td 
+                            img(
+                                src=item.thumbnail
+                                alt=`sản phẩm ${index + 1}` 
+                                width="100px"
+                                height="auto"
+                            )
+                        - const prefix = Array(level + 1).join("-- ")
+                        td #{prefix} #{item.title}
+                        td 
+                            input(
+                                type="number"
+                                value=item.position 
+                                style="width: 60px"
+                                min="1"
+                                name="position"
+                            )
+                        td 
+                            if(item.status == "active")
+                                //- href=`/admin/products/change-status/inactive/${item.id}`
+                                //- dont use the above link cause the default method is GET while we have to use PATCH
+
+                                //- javascript:;  => telling nodejs that we use javascript to handle the logic
+                                a.badge.bg-success(
+                                    href="javascript:;"
+                                    data-status="active"
+                                    data-id=item.id
+                                    button-change-status
+                                ) Hoạt động
+                            else 
+                                a.badge.bg-danger(
+                                    href="javascript:;"
+                                    data-status="inactive"
+                                    data-id=item.id
+                                    button-change-status
+                                ) Dừng hoạt động
+                        td  
+                            a(
+                                href=`${prefixAdmin}/products-category/detail/${item.id}`
+                                class="btn btn-secondary btn-sm"
+                            ) Chi tiết
+                            a(
+                                href=`${prefixAdmin}/products-category/edit/${item.id}`
+                                class="btn btn-warning btn-sm"
+                            ) Sửa
+                            button(
+                                class="btn btn-danger btn-sm ms-1"
+                                button-delete
+                                data-id=item.id
+                            ) Xóa
+                        if (item.children && item.children.length > 0)
+                            +table-tree(item.children, level + 1)
