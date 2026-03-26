@@ -1,6 +1,7 @@
 const Role = require("../../models/role.model");
 const systemConfig = require("../../config/system");
 
+// [GET] /admin/roles
 module.exports.index = async (req, res) => {
     let find = {
         deleted: false,
@@ -14,12 +15,14 @@ module.exports.index = async (req, res) => {
     })
 }
 
+// [GET] /admin/roles/create
 module.exports.create = async (req, res) => {
     res.render("admin/pages/roles/create", {
         pageTitle: "Tạo nhóm quyền",
     })
 }
 
+// [POST] /admin/roles/create
 module.exports.createPost = async (req, res) => {
     const record = new Role(req.body);
     await record.save();
@@ -27,6 +30,7 @@ module.exports.createPost = async (req, res) => {
     res.redirect(`${systemConfig.prefixAdmin}/roles`);
 }
 
+// [GET] /admin/roles/edit
 module.exports.edit = async (req, res) => {
     let find = {
         deleted: false,
@@ -41,6 +45,7 @@ module.exports.edit = async (req, res) => {
     })
 }
 
+// [PATCH] /admin/roles/edit
 module.exports.editPost = async (req, res) => {
     const id = req.params.id;
 
@@ -51,5 +56,4 @@ module.exports.editPost = async (req, res) => {
         req.flash("error", "Cập nhật thất bại");
     }
     res.redirect(`${systemConfig.prefixAdmin}/roles/edit/${id}`);
-
 }
