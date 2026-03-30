@@ -12,10 +12,11 @@ cloudinary.config({
 module.exports.upload = async (req, res, next) => {
     try {
         if (req.file) {
+            const folder = req.uploadFolder || "product-thumbnails";
             const streamUpload = (buffer) => {
                 return new Promise((resolve, reject) => {
                 const stream = cloudinary.uploader.upload_stream(
-                    { folder: "product-thumbnails" },
+                    { folder: folder },
                     (error, result) => {
                     if (result) resolve(result);
                     else reject(error);

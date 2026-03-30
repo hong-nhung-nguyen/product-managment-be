@@ -173,7 +173,7 @@ module.exports.create = async (req, res) => {
 
     const newRecords = createTreeHelper(records);
 
-    console.log(newRecords);
+    // console.log(newRecords);
 
     res.render("admin/pages/products/create", {
         pageTitle: "Thêm mới sản phẩm",
