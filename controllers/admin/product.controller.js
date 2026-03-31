@@ -131,7 +131,10 @@ module.exports.changeMulti = async (req, res) => {
         case "delete-all":
             await Product.updateMany({ _id: { $in: ids }}, {
                 deleted: true,
-                deletedAt: new Date()
+                deletedBy: {
+                    account_id: res.locals.user.id,
+                    deletedAt: new Date(),
+                }
             });
             req.flash("success", `Đã xóa thành công ${ids.length} sản phẩm!`);
             break;
@@ -162,10 +165,14 @@ module.exports.deleteItem = async (req, res) => {
     // await Product.deleteOne( { _id: id });
 
     // delete temporarily (update "deleted")
+
     await Product.updateOne( { _id: id }, { 
         deleted: true,
-        deletedAt: new Date()
-     });
+        deletedBy: {
+            account_id: res.locals.user.id,
+            deletedAt: new Date(),
+        }
+    });
     // patch is also accepted, but we want to follow the correct logic
     // when users actually use the app (delete an item)
 
