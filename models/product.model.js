@@ -23,6 +23,13 @@ const productSchema = new mongoose.Schema({
         slug: "title", // san-pham-1
         unique: true // to get unique id for same product titles
     },
+    createdBy: {
+        account_id: String,
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
+    },
     deleted: {
         type: Boolean,
         default: false

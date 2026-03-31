@@ -3,6 +3,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 
+const moment = require("moment");
+
 // to use notifications for front-end
 const flash = require("express-flash");
 const cookieParser = require("cookie-parser");
@@ -60,6 +62,7 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 
 // App Local Variables: all these variables will exist in all pug files
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+app.locals.moment = moment;
 
 console.log(__dirname);
 
