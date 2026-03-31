@@ -10,10 +10,13 @@ mixin form-change-multi(action, page)
             .form-group 
                 select(name="type" class="form-control")
                     option(disabled selected) -- Chọn hành động --
-                    option(value="active") Hoạt động
-                    option(value="inactive") Dừng hoạt động
-                    option(value="delete-all") Xóa tất cả
-                    option(value="change-position") Thay đổi vị trí
+                    if(role.permissions.includes("products_edit"))
+                        option(value="active") Hoạt động
+                        option(value="inactive") Dừng hoạt động
+                    if(role.permissions.includes("products_delete"))
+                        option(value="delete-all") Xóa tất cả
+                    if(role.permissions.includes("products_edit"))
+                        option(value="change-position") Thay đổi vị trí
             .form-group 
                 input(
                     type="text"
