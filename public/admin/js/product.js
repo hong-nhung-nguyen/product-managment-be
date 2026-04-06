@@ -21,6 +21,29 @@ if(buttonsChangeStatus.length > 0) {
 }
 // End change status
 
+// Change Featured 
+const buttonsChangeFeatured = document.querySelectorAll("[button-change-featured]");
+if(buttonsChangeFeatured.length > 0) {
+    const formChangeFeatured = document.querySelector("#form-change-featured");
+    const dataPath = formChangeFeatured.getAttribute("data-path");
+
+    buttonsChangeFeatured.forEach(button => {
+        button.addEventListener("click", () => {
+            const featuredCurrent = button.getAttribute("data-featured");
+            const id = button.getAttribute("data-id");
+
+            let featuredChange = featuredCurrent == "1" ? "0" : "1";
+            
+            const action = dataPath + `/${featuredChange}/${id}?_method=PATCH`;
+            formChangeFeatured.action = action;
+
+            formChangeFeatured.submit();
+
+        })
+    })
+}
+// End Change Featured
+
 // Delete Item
 const buttonsDelete = document.querySelectorAll("[button-delete]");
 if (buttonsDelete.length > 0) {

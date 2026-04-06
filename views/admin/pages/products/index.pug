@@ -59,6 +59,7 @@ block main
                             th Giá
                             th Vị trí
                             th Trạng thái 
+                            th Nổi bật
                             th Người tạo
                             th Người chỉnh sửa
                             th Hành động
@@ -109,6 +110,21 @@ block main
                                             data-id=item.id
                                             button-change-status
                                         ) Dừng hoạt động
+                                td 
+                                    if(item.featured == "1")
+                                        a.badge.bg-success(
+                                            href="javascript:;"
+                                            data-featured="1"
+                                            data-id=item.id 
+                                            button-change-featured
+                                        ) Nổi bật
+                                    else    
+                                        a.badge.bg-secondary(
+                                            href="javascript:;"
+                                            data-featured="0"
+                                            data-id=item.id 
+                                            button-change-featured
+                                        ) Không
                                 
                                 td 
                                     p #{item.accountFullName}
@@ -159,6 +175,15 @@ block main
             //- dont declare this as one of the form's attributes cause form doesnt have 
             //- the "page" attribute
         
+        // form change featured
+        form(
+            action=""
+            method="POST"
+            id="form-change-featured"
+            data-path=`${prefixAdmin}/products/change-featured`
+        )
+        // end form change featured
+
         form(
             action=""
             method="POST"

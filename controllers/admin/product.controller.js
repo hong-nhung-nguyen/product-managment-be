@@ -134,6 +134,26 @@ module.exports.changeStatus = async (req, res, next) => {
     redirectHelper(req, res);
 }
 
+// [PATCH] /admin/products/change-featured/:featured/:id
+module.exports.changeFeatured = async (req, res) => {
+    const id = req.params.id;
+
+    const updatedBy = {
+        account_id: res.locals.user.id,
+        updatedAt: new Date()
+    }
+    
+    await Product.updateOne({ _id: id }, { 
+        featured: req.params.featured,
+        $push: { updatedBy: updatedBy } 
+    });
+
+    req.flash("success", "Cập nhật sản phẩm nổi bật thành công");
+
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
+}
+
+
 // [PATCH] /admin/products/change-multi
 module.exports.changeMulti = async (req, res) => {
     // when we pass the data into the form this console log line
