@@ -1,7 +1,11 @@
 extends ../../layouts/default.pug 
 include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
 
 block main 
+    +alert-success(5000)
+    +alert-error(5000)
+    
     .product-detail 
         .container.my-5  
             .row 
@@ -39,6 +43,12 @@ block main
                             value="1"
                             min="1"
                             max=product.stock
+                        )
+                        input(
+                            class="form-control d-none"
+                            type="text"
+                            name="productSlug"
+                            value=product.slug
                         )
                         button(
                             type="submit"
