@@ -41,7 +41,7 @@ block main
                                             name="quantity"
                                             value=product.quantity
                                             min="1"
-                                            item-id=product.product_id
+                                            product-id=product.product_id
                                             style="width: 60px"
                                         ) 
                                     td $#{product.totalPrice}
@@ -55,8 +55,10 @@ block main
 
                     div(class="text-right mt-3")
                         a(href="/checkout" class="btn btn-success") THANH TOÁN
-                        
+
                 else 
                     h1(class="text-center") Không có sản phẩm nào trong giỏ hàng
+
+    script(src="/js/cart.js")
             
             
