@@ -7,11 +7,13 @@ const userRoutes = require("./user.route");
 
 const categoryMiddleware = require("../../middlewares/client/category.middleware");
 const cartMiddleware = require("../../middlewares/client/cart.middleware");
+const userMiddleware = require("../../middlewares/client/user.middleware");
 
 module.exports = (app) => {
     // this middleware can be used for every routes
     app.use(cartMiddleware.cartId);
     app.use(categoryMiddleware.category);
+    app.use(userMiddleware.inforUser);
 
     app.use("/", homeRoutes);
     
