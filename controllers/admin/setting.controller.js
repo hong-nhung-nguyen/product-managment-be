@@ -9,7 +9,7 @@ module.exports.general = async (req, res) => {
 
     res.render("admin/pages/setting/general", {
         pageTitle: "Cài đặt chung",
-        settingGeneral: settingGeneral
+        settingGeneral: settingGeneral || {}
     })
 }
 
