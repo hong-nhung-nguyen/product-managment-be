@@ -9,7 +9,7 @@ block main
     .container.my-3 
         .row 
             .col-12 
-                +box-head("Đặt hàng")
+                +box-head("Checkout")
         
         .row 
             .col-12 
@@ -19,11 +19,11 @@ block main
                         thead 
                             tr 
                                 th STT 
-                                th Ảnh 
-                                th Tên 
-                                th Giá 
-                                th Số lượng 
-                                th Tổng tiền
+                                th Image 
+                                th Name 
+                                th Price 
+                                th Quantity 
+                                th Total
                         
                         tbody 
                             each product, index in cart.products
@@ -37,11 +37,11 @@ block main
                                     td $#{product.totalPrice}
                                     
                     
-                    h3(class="text-end") Tổng đơn hàng: $#{cart.totalPrice}
+                    h3(class="text-end") Order Total: $#{cart.totalPrice}
 
 
                 else 
-                    h1(class="text-center") Không có sản phẩm nào trong giỏ hàng
+                    h1(class="text-center") No products in the shopping cart
         
         if(cart.products.length > 0) 
             .row 
@@ -52,7 +52,7 @@ block main
                             method="POST"
                         )
                             div(class="form-group mb-3")
-                                label(for="fullName") Họ tên 
+                                label(for="fullName") Full Name
                                 input(
                                     type="text"
                                     class="form-control"
@@ -61,7 +61,7 @@ block main
                                     required
                                 )
                             div(class="form-group mb-3")
-                                label(fpr="phone") Số điện thoại 
+                                label(for="phone") Phone Number
                                 input(
                                     type="text"
                                     class="form-control"
@@ -70,7 +70,7 @@ block main
                                     required
                                 )
                             div(class="form-group mb-3")
-                                label(fpr="address") Địa chỉ 
+                                label(for="address") Address
                                 input(
                                     type="text"
                                     class="form-control"
@@ -82,7 +82,7 @@ block main
                                 button(
                                     type="submit"
                                     class="btn btn-success btn-block"
-                                ) ĐẶT HÀNG
+                                ) PLACE ORDER
         
 
     script(src="/js/cart.js")

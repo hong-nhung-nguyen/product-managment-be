@@ -105,7 +105,7 @@ module.exports.index = async (req, res) => {
 
 
     res.render("admin/pages/products/index", {
-        pageTitle: "Danh sách sản phẩm",
+        pageTitle: "Product List",
         products: products,
         filterStatus: filterStatus,
         keyword: objectSearch.keyword,
@@ -129,7 +129,7 @@ module.exports.changeStatus = async (req, res, next) => {
         $push: { updatedBy: updatedBy }
     });
 
-    req.flash("success", "Cập nhật trạng thái sản phẩm thành công!");
+    req.flash("success", "Product status updated successfully!");
 
     redirectHelper(req, res);
 }
@@ -148,7 +148,7 @@ module.exports.changeFeatured = async (req, res) => {
         $push: { updatedBy: updatedBy } 
     });
 
-    req.flash("success", "Cập nhật sản phẩm nổi bật thành công");
+    req.flash("success", "Product featured flag updated successfully");
 
     res.redirect(`${systemConfig.prefixAdmin}/products`);
 }
@@ -175,14 +175,14 @@ module.exports.changeMulti = async (req, res) => {
                 status: "active",
                 $push: { updatedBy: updatedBy }
             });
-            req.flash("success", `Cập nhật trạng thái thành công ${ids.length} sản phẩm!`);
+            req.flash("success", `Successfully updated status for ${ids.length} products!`);
             break;
         case "inactive":
             await Product.updateMany({ _id: { $in: ids }}, { 
                 status: "inactive",
                 $push: { updatedBy: updatedBy }
             });
-            req.flash("success", `Cập nhật trạng thái thành công ${ids.length} sản phẩm!`);
+            req.flash("success", `Successfully updated status for ${ids.length} products!`);
             break;
         // Delete-multi
         case "delete-all":
@@ -194,7 +194,7 @@ module.exports.changeMulti = async (req, res) => {
                 },
                 $push: { updatedBy: updatedBy }
             });
-            req.flash("success", `Đã xóa thành công ${ids.length} sản phẩm!`);
+            req.flash("success", `Successfully deleted ${ids.length} products!`);
             break;
         // Change-position
         case "change-position":
@@ -206,7 +206,7 @@ module.exports.changeMulti = async (req, res) => {
                     $push: { updatedBy: updatedBy } 
                 })
             }
-            req.flash("success", `Đã đổi vị trí thành công ${ids.length} sản phẩm!`);
+            req.flash("success", `Successfully changed position for ${ids.length} products!`);
             break
         default:
             break;
@@ -237,7 +237,7 @@ module.exports.deleteItem = async (req, res) => {
     // patch is also accepted, but we want to follow the correct logic
     // when users actually use the app (delete an item)
 
-    req.flash("success", `Đã xóa thành công sản phẩm!`);
+    req.flash("success", `Product deleted successfully!`);
 
     redirectHelper(req, res);
 }
@@ -255,7 +255,7 @@ module.exports.create = async (req, res) => {
     // console.log(newRecords);
 
     res.render("admin/pages/products/create", {
-        pageTitle: "Thêm mới sản phẩm",
+        pageTitle: "Create New Product",
         records: newRecords
     })
 }
@@ -307,7 +307,7 @@ module.exports.edit = async (req, res) => {
     // console.log(product);
 
     res.render("admin/pages/products/edit", {
-        pageTitle: "Chỉnh sửa sản phẩm",
+        pageTitle: "Edit Product",
         product: product
     })
 }
@@ -336,9 +336,9 @@ module.exports.editPatch = async (req, res) => {
             ...req.body,
             $push: { updatedBy: updatedBy }
         });
-        req.flash("success", "Cập nhật thành công!");
+        req.flash("success", "Updated successfully!");
     } catch(error) {
-        req.flash("error", "Cập nhật thất bại!");
+        req.flash("error", "Update failed!");
     }
     
     res.redirect(`${systemConfig.prefixAdmin}/products/edit/${id}`);   

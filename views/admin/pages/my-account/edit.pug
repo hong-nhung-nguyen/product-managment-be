@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug 
 
 block main 
-    h1(class="mb-4") Chỉnh sửa thông tin cá nhân
+    h1(class="mb-4") Edit Account
 
     +alert-success(5000)
     +alert-error(5000)
@@ -13,7 +13,7 @@ block main
         enctype="multipart/form-data"
     )
         div(class="form-group mb-3")
-            label(for="fullName") Họ tên *
+            label(for="fullName") Full Name *
             input(
                 type="text"
                 class="form-control"
@@ -31,7 +31,7 @@ block main
                 value=record.email
             )
         div(class="form-group mb-3")
-            label(for="password") Mật khẩu * 
+            label(for="password") Password * 
             input(
                 type="password"
                 class="form-control"
@@ -40,7 +40,7 @@ block main
                 value=record.password
             )
         div(class="form-group mb-3")
-            lable(for="phone") Số điện thoại
+            label(for="phone") Phone Number
             input(
                 type="text"
                 class="form-control"
@@ -52,7 +52,7 @@ block main
             class="form-group mb-3"
             upload-image
         )
-            lable(for="avatar") Ảnh đại diện 
+            lable(for="avatar") Profile Picture
             input(
                 type="file"
                 class="form-control-file w-100"
@@ -76,7 +76,7 @@ block main
                 value="active" 
                 checked = record.status == "active" ? true : false
             )
-            label(for="statusActive" class="form-check-label") Hoạt động
+            label(for="statusActive" class="form-check-label") Active
         div(class="form-group form-check form-check-inline") 
             input(
                 type="radio"
@@ -86,10 +86,10 @@ block main
                 value="inactive" 
                 checked = record.status == "inactive" ? true : false
             )
-            label(for="statusInactive" class="form-check-label") Dừng Hoạt động
+            label(for="statusInactive" class="form-check-label") Inactive
         
         div(class="form-group mt-3")
             button(
                 type="submit"
                 class="btn btn-primary"
-            ) Cập nhật
+            ) Update

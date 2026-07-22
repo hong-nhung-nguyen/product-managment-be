@@ -5,14 +5,14 @@ block main
     +alert-error(5000)
     +alert-success(5000)
     
-    h1(class="mb-4") Chỉnh sửa nhóm quyền 
+    h1(class="mb-4") Edit Role Group 
 
     form(
         action=`${prefixAdmin}/roles/edit/${record.id}?_method=PATCH`
         method="POST"
     )
         div(class="form-group")
-            label(for="title") Tiêu đề
+            label(for="title") Title
             input(
                 type="text"
                 class="form-control"
@@ -22,7 +22,7 @@ block main
                 value=record.title
             )
         div(class="form-group")
-            label(for="desc") Mô tả
+            label(for="desc") Description
             input(
                 type="text"
                 class="form-control"
@@ -34,5 +34,5 @@ block main
             button(
                 type="submit"
                 class="btn btn-primary mt-4"
-            ) Cập nhật
+            ) Update
     

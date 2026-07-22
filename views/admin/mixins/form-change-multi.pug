@@ -4,19 +4,19 @@ mixin form-change-multi(action, page)
         method="POST"
         form-change-multi
     )
-        //- Hidden input = cách duy nhất để form gửi thêm dữ liệu mà user không cần nhập
+        //- Hidden input = the only way for the form to send extra data without user input
         input(type="hidden" name="page" value=page)
         .d-flex.align-items-start 
             .form-group 
                 select(name="type" class="form-control")
-                    option(disabled selected) -- Chọn hành động --
+                    option(disabled selected) -- Action --
                     if(role.permissions.includes("products_edit"))
-                        option(value="active") Hoạt động
-                        option(value="inactive") Dừng hoạt động
+                        option(value="active") Active
+                        option(value="inactive") Inactive
                     if(role.permissions.includes("products_delete"))
-                        option(value="delete-all") Xóa tất cả
+                        option(value="delete-all") Delete All
                     if(role.permissions.includes("products_edit"))
-                        option(value="change-position") Thay đổi vị trí
+                        option(value="change-position") Change Position
             .form-group 
                 input(
                     type="text"
@@ -24,6 +24,6 @@ mixin form-change-multi(action, page)
                     value=""
                     class="form-control d-none"
                 )
-                //- lúc đầu hiển thị ô input này để dễ hình dung
-                //- sau khi đã xử lý xong front-end có thể ẩn đi
-            button(type="submit" class="btn btn-primary") Áp dụng
+                //- at first display this input so it is easier to understand
+                //- after front-end handling is finished, it can be hidden
+            button(type="submit" class="btn btn-primary") Apply

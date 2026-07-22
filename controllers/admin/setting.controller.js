@@ -8,7 +8,7 @@ module.exports.general = async (req, res) => {
     const settingGeneral = await SettingGeneral.findOne({});
 
     res.render("admin/pages/setting/general", {
-        pageTitle: "Cài đặt chung",
+        pageTitle: "General Settings",
         settingGeneral: settingGeneral || {}
     })
 }
@@ -26,6 +26,6 @@ module.exports.generalPatch = async (req, res) => {
         await record.save();
     }
 
-    req.flash("success", "Cập nhật thành công!");
+    req.flash("success", "Update successful!");
     res.redirect(`${systemConfig.prefixAdmin}/setting/general`);
 }

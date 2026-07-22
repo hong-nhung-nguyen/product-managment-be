@@ -12,10 +12,10 @@ block main
         +alert-success("5000")
 
 
-        h1 Danh sách sản phẩm
+        h1 Products
 
         .card.mb-4
-            .card-header Bộ lọc và tìm kiếm 
+            .card-header Filter and Search 
             .card-body 
                 .row 
                     .col-6
@@ -24,14 +24,14 @@ block main
                         +search(keyword)
         
         .card.mb-3 
-            .card-header Sắp xếp 
+            .card-header Sort 
             .card-body 
                 .row 
                     .col-4 
                         +sort()
 
         .card.mb-3 
-            .card-header Danh sách 
+            .card-header Products List 
             .card-body
                 .row
                     .col-8
@@ -41,7 +41,7 @@ block main
                             a(
                                 href=`${prefixAdmin}/products/create`
                                 class='btn btn-outline-success'
-                            ) + Thêm mới
+                            ) + Add New
 
 
 
@@ -53,16 +53,16 @@ block main
                         tr 
                             th
                                 input(type="checkbox" name="checkall")
-                            th STT 
-                            th Hình ảnh 
-                            th Tiêu đề
-                            th Giá
-                            th Vị trí
-                            th Trạng thái 
-                            th Nổi bật
-                            th Người tạo
-                            th Người chỉnh sửa
-                            th Hành động
+                            th # 
+                            th Thumbnail 
+                            th Title
+                            th Price
+                            th Position
+                            th Status 
+                            th Featured
+                            th Created By
+                            th Modified By
+                            th Actions
                     
                     tbody 
                         each item, index in products
@@ -77,7 +77,7 @@ block main
                                 td 
                                     img(
                                         src=item.thumbnail
-                                        alt=`sản phẩm ${index + 1}` 
+                                        alt=`product ${index + 1}` 
                                         width="100px"
                                         height="auto"
                                     )
@@ -102,14 +102,14 @@ block main
                                             data-status="active"
                                             data-id=item.id
                                             button-change-status
-                                        ) Hoạt động
+                                        ) Active
                                     else 
                                         a.badge.bg-danger(
                                             href="javascript:;"
                                             data-status="inactive"
                                             data-id=item.id
                                             button-change-status
-                                        ) Dừng hoạt động
+                                        ) Inactive
                                 td 
                                     if(item.featured == "1")
                                         a.badge.bg-success(
@@ -117,14 +117,14 @@ block main
                                             data-featured="1"
                                             data-id=item.id 
                                             button-change-featured
-                                        ) Nổi bật
+                                        ) Featured
                                     else    
                                         a.badge.bg-secondary(
                                             href="javascript:;"
                                             data-featured="0"
                                             data-id=item.id 
                                             button-change-featured
-                                        ) Không
+                                        ) Not Featured
                                 
                                 td 
                                     p #{item.accountFullName}
@@ -142,20 +142,20 @@ block main
                                     a(
                                         href=`${prefixAdmin}/products/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"
-                                    ) Chi tiết
+                                    ) Detail
 
                                     if(role.permissions.includes("products_edit"))
                                         a(
                                             href=`${prefixAdmin}/products/edit/${item.id}`
                                             class="btn btn-warning btn-sm"
-                                        ) Sửa
+                                        ) Edit
                                     
                                     if(role.permissions.includes("products_delete"))
                                         button(
                                             class="btn btn-danger btn-sm ms-1"
                                             button-delete
                                             data-id=item.id
-                                        ) Xóa 
+                                        ) Delete 
         
         +pagination(pagination)
 

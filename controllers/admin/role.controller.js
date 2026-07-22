@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
     const records = await Role.find(find);
     
     res.render("admin/pages/roles/index", {
-        pageTitle: "Nhóm quyền",
+        pageTitle: "Role List",
         records: records,
     })
 }
@@ -18,7 +18,7 @@ module.exports.index = async (req, res) => {
 // [GET] /admin/roles/create
 module.exports.create = async (req, res) => {
     res.render("admin/pages/roles/create", {
-        pageTitle: "Tạo nhóm quyền",
+        pageTitle: "Create Role",
     })
 }
 
@@ -40,7 +40,7 @@ module.exports.edit = async (req, res) => {
     const record = await Role.findOne(find);
 
     res.render("admin/pages/roles/edit", {
-        pageTitle: "Chỉnh sửa nhóm quyền",
+        pageTitle: "Edit Role",
         record: record
     })
 }
@@ -51,9 +51,9 @@ module.exports.editPost = async (req, res) => {
 
     try {
         await Role.updateOne({ _id: id}, req.body);
-        req.flash("success", "cập nhật thành công");
+        req.flash("success", "Update successful");
     } catch (error) {
-        req.flash("error", "Cập nhật thất bại");
+        req.flash("error", "Update failed");
     }
     res.redirect(`${systemConfig.prefixAdmin}/roles/edit/${id}`);
 }
@@ -67,7 +67,7 @@ module.exports.permissions = async (req, res) => {
     const records = await Role.find(find);
 
     res.render("admin/pages/roles/permissions", {
-        pageTitle: "Phân quyền",
+        pageTitle: "Permissions",
         records: records
     });
 }
@@ -83,9 +83,9 @@ module.exports.permissionsPatch = async (req, res) => {
             await Role.updateOne({ _id: id }, { permissions: permissions });
         }
 
-        req.flash("success", "Cập nhật phân quyền thành công!");
+        req.flash("success", "Update permissions successful!");
     } catch(error) {
-        req.flash("error", "Cập nhật phân quyền thất bại");
+        req.flash("error", "Update permissions failed");
     }
     res.redirect(`${systemConfig.prefixAdmin}/roles/permissions`);
 }

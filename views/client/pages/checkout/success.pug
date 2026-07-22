@@ -5,45 +5,45 @@ block main
     .container.my-3 
         .row 
             .col-12 
-                +box-head("Đặt hàng thành công")
+                +box-head("Order Success")
         
         .row    
             .col-12 
                 div(class="alert alert-success")
-                    | Đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng 
-                    | trong thời gian sớm nhất.
+                    | Order placed successfully! We will process the order 
+                    | as soon as possible.
         
         if(order)
             .row   
                 .col-12 
-                    h4(class="mb-2") Thông tin cá nhân 
+                    h4(class="mb-2") Personal Information 
                     table(class="table table-bordered")
                         tbody 
                             tr 
-                                td Họ tên 
+                                td Full Name 
                                 td 
                                     b #{order.userInfo.fullName}
                             tr 
-                                td Số điện thoại  
+                                td Phone Number  
                                 td 
                                     b #{order.userInfo.phone}
                             tr 
-                                td Địa chỉ 
+                                td Address 
                                 td 
                                     b #{order.userInfo.address}
             
             .row 
                 .col-12 
-                    h4(class="mb-2") Thông tin đơn hàng 
+                    h4(class="mb-2") Order Information 
                     table(class="table table-bordered")
                         thead
                             tr 
                                 th STT 
-                                th Ảnh 
-                                th tên 
-                                th Giá
-                                th Số lượng 
-                                th Tổng tiền 
+                                th Image 
+                                th Name 
+                                th Price
+                                th Quantity 
+                                th Total 
                             
                         tbody
                             each item, index in order.products 
@@ -57,4 +57,4 @@ block main
                                     td $#{item.totalPrice} 
             
             if(order.products.length > 0)
-                h3(class="text-end") Tổng đơn hàng: $#{order.totalPrice}
+                h3(class="text-end") Order Total: $#{order.totalPrice}

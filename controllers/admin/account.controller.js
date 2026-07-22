@@ -24,7 +24,7 @@ module.exports.index = async (req, res) => {
     }
 
     res.render("admin/pages/accounts/index", {
-        pageTitle: "Danh sách tài khoản",
+        pageTitle: "Account List",
         records: records
     })
 }
@@ -38,7 +38,7 @@ module.exports.create = async (req, res) => {
     const roles = await Role.find(findRoles);
 
     res.render("admin/pages/accounts/create", {
-        pageTitle: "Thêm tài khoản mới",
+        pageTitle: "Create Account",
         roles: roles
     })
 }
@@ -81,7 +81,7 @@ module.exports.edit = async (req, res) => {
     })
 
     res.render("admin/pages/accounts/edit", {
-        pageTitle: "Chỉnh sửa tài khoản",
+        pageTitle: "Edit Account",
         record: record,
         roles: roles
     })
@@ -115,12 +115,12 @@ module.exports.editAccount = async (req, res) => {
             }
 
         await Account.updateOne({ _id: id }, req.body);
-        req.flash("success", "Cập nhật tài khoản thành công");
+        req.flash("success", "Account updated successfully");
         }
         
     } catch(error) {
         console.log(error);
-        req.flash("error", "Cập nhật tài khoản thất bại");
+        req.flash("error", "Failed to update account");
     }
 
     res.redirect(`${systemConfig.prefixAdmin}/accounts/edit/${id}`);

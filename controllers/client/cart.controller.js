@@ -30,7 +30,7 @@ module.exports.index = async (req, res) => {
     
     
     res.render("client/pages/cart/index.pug", {
-        pageTitle: "Giỏ hàng",
+        pageTitle: "Cart",
         cart: cart
     });
 }
@@ -80,8 +80,7 @@ module.exports.addPost = async (req, res) => {
         );
     }
 
-    req.flash("success", "Đã thêm sản phẩm vào giỏ hàng");
-    
+    req.flash("success", "Added product to cart successfully");
     res.redirect(`/products/detail/${productSlug}`);
 }
 
@@ -96,7 +95,7 @@ module.exports.delete = async (req, res) => {
         $pull: { products: { product_id: productId } }
     })
 
-    req.flash("success", "Đã xóa sản phẩm");
+    req.flash("success", "Product removed from cart successfully");
     res.redirect("/cart");
 }
 
@@ -115,7 +114,7 @@ module.exports.updateQuantity = async (req, res) => {
         }
     })
 
-    req.flash("success", "Cập nhật số lượng thành công");
+    req.flash("success", "Update quantity successful");
     res.redirect("/cart");
 
 }

@@ -7,7 +7,7 @@ block main
         +alert-error("5000")
         +alert-success(5000)
 
-        h1(class="mb-4") Chỉnh sửa sản phẩm 
+        h1(class="mb-4") Edit Product
 
         form(
             action=`${prefixAdmin}/products/edit/${product._id}?_method=PATCH`
@@ -16,7 +16,7 @@ block main
             enctype="multipart/form-data"
         )
             div(class="form-group")
-                label(for="title") Tiêu đề
+                label(for="title") Title
                 input(
                     type="text"
                     class="form-control"
@@ -25,7 +25,7 @@ block main
                     value=product.title
                 )
             div(class="form-group")
-                label(for="desc") Mô tả
+                label(for="desc") Description
                 textarea(
                     class="form-control"
                     id="desc"
@@ -33,7 +33,7 @@ block main
                     rows="5"
                 ) #{product.description}
             div(class="form-group")
-                label(for="price") Giá
+                label(for="price") Price
                 input(
                     type="number"
                     class="form-control"
@@ -42,7 +42,7 @@ block main
                     value=product.price
                 )
             div(class="form-group")
-                label(for="discount") % Giảm giá
+                label(for="discount") Discount %
                 input(
                     type="number"
                     class="form-control"
@@ -51,7 +51,7 @@ block main
                     value=product.discountPercentage
                 )
             div(class="form-group")
-                label(for="stock") Số lượng 
+                label(for="stock") Stock
                 input(
                     type="number"
                     class="form-control"
@@ -64,7 +64,7 @@ block main
                 class="form-group"
                 upload-image
             )
-                label(for="thumbnail") Ảnh 
+                label(for="thumbnail") Thumbnail
                 input(
                     type="file"
                     class="form-control-file image-input"
@@ -84,13 +84,13 @@ block main
                 ) x
             //- * = all image files
             div(class="form-group")
-                label(for="position") Vị trí
+                label(for="position") Position
                 input(
                     type="number"
                     class="form-control"
                     id="position"
                     name="position"
-                    placeholder="Tự động tăng"
+                    placeholder="Auto-increment"
                     value=product.position
                 )
             div(class="form-group form-check form-check-inline")
@@ -102,7 +102,7 @@ block main
                     value="active"
                     checked= product.status == "active" : true ? false
                 )
-                label(for="statusActive" class="form-check-label") Hoạt động
+                label(for="statusActive" class="form-check-label") Active
             div(class="form-group form-check form-check-inline")
                 input(
                     type="radio"
@@ -112,12 +112,12 @@ block main
                     value="inactive"
                     checked = product.status == "inactive" : true ? false
                 )
-                label(for="statusInActive" class="form-check-label") Dừng Hoạt động
+                label(for="statusInActive" class="form-check-label") Inactive
             div(class="form-group")
                 button(
                     type="submit"
                     class="btn btn-primary"
-                ) Cập nhật
+                ) Update
 
 
         script(src="/admin/js/product.js")

@@ -79,7 +79,7 @@ module.exports.order = async (req, res) => {
         products: [],
     })
 
-    req.flash("Đặt hàng thành công");
+    req.flash("success", "Order placed successfully");
     res.redirect(`/checkout/success/${order.id}`);
 }
 
@@ -110,7 +110,7 @@ module.exports.success = async (req, res) => {
     order.totalPrice = orderTotalPrice;
 
     res.render("client/pages/checkout/success.pug", {
-        pageTitle: "Đặt hàng thành công",
+        pageTitle: "Order placed successfully",
         order: order
     })
 }

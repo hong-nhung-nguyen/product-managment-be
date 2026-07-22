@@ -16,37 +16,37 @@ header.header
                     div(class="form-group d-flex mb-0")
                         input(
                             type="text"
-                            placeholder="Nhập từ khóa"
+                            placeholder="Search keyword"
                             class="form-control"
                             name="keyword"
                         )
                         button(
                             type="submit"
                             class="btn btn-primary"
-                        ) Tìm
+                        ) Search
             
             .col-4
                 .inner-menu 
                     ul 
                         li 
-                            a(href="/") Trang chủ
+                            a(href="/") Home
 
                         li(class="sub-menu")
-                            a(href="/products") Sản phẩm
+                            a(href="/products") Products
                             - const pathProduct = "/products";
                             +sub-menu(layoutProductsCategory, pathProduct)
                         
                         li 
-                            a(href="/cart") Giỏ hàng (#{miniCart ? miniCart.totalQuantity : 0})
+                            a(href="/cart") Cart (#{miniCart ? miniCart.totalQuantity : 0})
                         
                         if(user)
                             li 
                                 a(href="/user/info") #{user.fullName}
                             li 
-                                a(href="/user/logout") Đăng xuất
+                                a(href="/user/logout") Logout
                         else 
                             li 
-                                a(href="/user/login") Đăng nhập 
+                                a(href="/user/login") Login 
                             li 
-                                a(href="/user/register") Đăng ký 
+                                a(href="/user/register") Register
                             

@@ -9,7 +9,7 @@ block main
     .container.my-3 
         .row 
             .col-12 
-                +box-head("Giỏ hàng")
+                +box-head("Shopping Cart")
         
         .row 
             .col-12 
@@ -19,12 +19,12 @@ block main
                         thead 
                             tr 
                                 th STT 
-                                th Ảnh 
-                                th Tên 
-                                th Giá 
-                                th Số lượng 
-                                th Tổng tiền
-                                th Hành động 
+                                th Image 
+                                th Name 
+                                th Price 
+                                th Quantity 
+                                th Total
+                                th Actions 
                         
                         tbody 
                             each product, index in cart.products
@@ -49,15 +49,15 @@ block main
                                         a(
                                             href=`/cart/delete/${product.product_id}`
                                             class="btn btn-danger"
-                                        ) Xóa
+                                        ) Remove
                     
-                    h3(class="text-right") Tổng đơn hàng: $#{cart.totalPrice}
+                    h3(class="text-right") Order Total: $#{cart.totalPrice}
 
                     div(class="text-right mt-3")
-                        a(href="/checkout" class="btn btn-success") THANH TOÁN
+                        a(href="/checkout" class="btn btn-success") CHECKOUT
 
                 else 
-                    h1(class="text-center") Không có sản phẩm nào trong giỏ hàng
+                    h1(class="text-center") No products in the shopping cart
 
     script(src="/js/cart.js")
             

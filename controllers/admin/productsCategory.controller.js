@@ -16,7 +16,7 @@ module.exports.index = async (req, res) => {
     const newRecords = createTreeHelper(records);
 
     res.render("admin/pages/productsCategory/index", {
-        pageTitle: "Danh mục sản phẩm",
+        pageTitle: "Product Categories",
         records: newRecords,
     })
 }
@@ -36,7 +36,7 @@ module.exports.create = async (req, res) => {
 
 
     res.render("admin/pages/productsCategory/create", {
-        pageTitle: "Tạo mới danh mục sản phẩm",
+        pageTitle: "Create Product Category",
         records: newRecords,
     })
 }
@@ -91,7 +91,7 @@ module.exports.edit = async (req, res) => {
         const record = await ProductCategory.findOne({ _id: req.params.id });
 
         res.render("admin/pages/productsCategory/edit", {
-            pageTitle: "Chỉnh sửa danh mục sản phẩm",
+            pageTitle: "Edit Product Category",
             record: record,
             records: newRecords,
         })
@@ -107,9 +107,9 @@ module.exports.editPost = async (req, res) => {
     try {
         const id = req.params.id;
         await ProductCategory.updateOne({ _id: id}, req.body);
-        req.flash("success", "Cập nhật thành công");
+        req.flash("success", "Updated successfully");
     } catch (error) {
-    req.flash("error", "Cập nhật thất bại");
+    req.flash("error", "Update failed");
     }   
     res.redirect(`${systemConfig.prefixAdmin}/products-category/edit/${id}`);
 }

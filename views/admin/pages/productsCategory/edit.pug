@@ -6,7 +6,7 @@ block main
     +alert-error("5000")
     +alert-success("5000")
 
-    h1(class="mb-4") Chỉnh sửa danh mục sản phẩm
+    h1(class="mb-4") Edit Product Category
 
     form(
         action=`${prefixAdmin}/products-category/edit/${record.id}?_method=PATCH`
@@ -14,7 +14,7 @@ block main
         enctype="multipart/form-data"
     )
         div(class="form-group")
-            label(for="title") Tiêu đề
+            label(for="title") Title
             input(
                 type="text"
                 class="form-control"
@@ -23,7 +23,7 @@ block main
                 value=record.title
             )
         div(class="form-group")
-            label(for="parent_id") Danh mục cha
+            label(for="parent_id") Parent Category
             //- input(
             //-     type="text"
             //-     class="form-control"
@@ -35,11 +35,11 @@ block main
                 id="parent_id"
                 class="form-control"
             )
-                option(value="") -- Chọn danh mục cha --
+                option(value="") -- Select parent category --
                 if(records)
                     +select-tree(records, record.parent_id)
         div(class="form-group")
-            label(for="desc") Mô tả
+            label(for="desc") Description
             textarea(
                 class="form-control textarea-mce"
                 id="desc"
@@ -51,7 +51,7 @@ block main
             class="form-group"
             upload-image
         )
-            label(for="thumbnail") Ảnh 
+            label(for="thumbnail") Image 
             input(
                 type="file"
                 class="form-control-file image-input"
@@ -71,13 +71,13 @@ block main
             ) x
         //- * = all image files
         div(class="form-group")
-            label(for="position") Vị trí
+            label(for="position") Position
             input(
                 type="number"
                 class="form-control"
                 id="position"
                 name="position"
-                placeholder="Tự động tăng"
+                placeholder="Auto increment"
                 min="1"
                 value=record.position
             )
@@ -90,7 +90,7 @@ block main
                 value="active"
                 checked= record.status == "active" ? true : false
             )
-            label(for="statusActive" class="form-check-label") Hoạt động
+            label(for="statusActive" class="form-check-label") Active
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"
@@ -100,13 +100,10 @@ block main
                 value="inactive"
                 checked= record.status == "inactive" ? true: false
             )
-            label(for="statusInActive" class="form-check-label") Dừng Hoạt động
+            label(for="statusInActive" class="form-check-label") Inactive
         div(class="form-group")
             button(
                 type="submit"
                 class="btn btn-primary"
-            ) Cập nhật
-
-
-    script(src="/admin/js/product.js")
+                ) Update
     

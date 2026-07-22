@@ -7,7 +7,7 @@ block main
     if (role.permissions.includes("products_create"))
         +alert-error("5000")
 
-        h1(class="mb-4") Thêm mới sản phẩm 
+        h1(class="mb-4") Create Product
 
         form(
             action=`${prefixAdmin}/products/create`
@@ -16,7 +16,7 @@ block main
             enctype="multipart/form-data"
         )
             div(class="form-group")
-                label(for="title") Tiêu đề
+                label(for="title") Title
                 input(
                     type="text"
                     class="form-control"
@@ -30,11 +30,11 @@ block main
                     id="product_category_id"
                     class="form-control"
                 )
-                    option(value="") -- Chọn danh mục sản phẩm --
+                    option(value="") -- Select Product Category --
                     if(records)
                         +select-tree(records)
             div(class="form-group")
-                label(for="desc") Mô tả
+                label(for="desc") Description
                 textarea(
                     class="form-control textarea-mce"
                     id="desc"
@@ -42,7 +42,7 @@ block main
                     rows="5"
                 )
             div(class="form-group")
-                label(for="price") Giá
+                label(for="price") Price
                 input(
                     type="number"
                     class="form-control"
@@ -52,7 +52,7 @@ block main
                     min="0"
                 )
             div(class="form-group")
-                label(for="discount") % Giảm giá
+                label(for="discount") Discount %
                 input(
                     type="number"
                     class="form-control"
@@ -62,7 +62,7 @@ block main
                     min="0"
                 )
             div(class="form-group")
-                label(for="stock") Số lượng 
+                label(for="stock") Stock
                 input(
                     type="number"
                     class="form-control"
@@ -76,7 +76,7 @@ block main
                 class="form-group"
                 upload-image
             )
-                label(for="thumbnail") Ảnh 
+                label(for="thumbnail") Thumbnail
                 input(
                     type="file"
                     class="form-control-file image-input"
@@ -96,17 +96,17 @@ block main
                 ) x
             //- * = all image files
             div(class="form-group")
-                label(for="position") Vị trí
+                label(for="position") Position
                 input(
                     type="number"
                     class="form-control"
                     id="position"
                     name="position"
-                    placeholder="Tự động tăng"
+                    placeholder="Auto-increment"
                     min="1"
                 )
             div(class="form-group")
-                label(class="d-block mb-2") Nổi bật
+                label(class="d-block mb-2") Featured
                 div(class="form-group form-check form-check-inline")
                     input(
                         type="radio"
@@ -116,7 +116,7 @@ block main
                         value="1"
                         checked
                     )
-                    label(for="featuredTrue" class="form-check-label") Có
+                    label(for="featuredTrue" class="form-check-label") Yes
                 div(class="form-group form-check form-check-inline")
                     input(
                         type="radio"
@@ -125,9 +125,9 @@ block main
                         name="featured"
                         value="0"
                     )
-                    label(for="featuredFalse" class="form-check-label") Không
+                    label(for="featuredFalse" class="form-check-label") No
             div(class="form-group")
-                label(class="d-block mb-2") Trạng thái
+                label(class="d-block mb-2") Status
                 div(class="form-group form-check form-check-inline")
                     input(
                         type="radio"
@@ -137,7 +137,7 @@ block main
                         value="active"
                         checked
                     )
-                    label(for="statusActive" class="form-check-label") Hoạt động
+                    label(for="statusActive" class="form-check-label") Active
                 div(class="form-group form-check form-check-inline")
                     input(
                         type="radio"
@@ -146,12 +146,12 @@ block main
                         name="status"
                         value="inactive"
                     )
-                    label(for="statusInActive" class="form-check-label") Dừng Hoạt động
+                    label(for="statusInActive" class="form-check-label") Inactive
             div(class="form-group")
                 button(
                     type="submit"
                     class="btn btn-primary"
-                ) Tạo mới
+                ) Create New
 
 
         script(src="/admin/js/product.js")

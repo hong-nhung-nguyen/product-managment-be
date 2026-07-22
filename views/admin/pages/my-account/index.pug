@@ -1,29 +1,29 @@
 extends ../../layouts/default.pug 
 
 block main 
-    h1(class="mb-4") Thông tin cá nhân 
+    h1(class="mb-4") My Account 
 
     if (user.avatar) 
         img(src=user.avatar width="150px" class="mb-3") 
     
     if (user.fullName) 
-        p Họ tên: <b>#{user.fullName}</b> 
+        p Full Name: <b>#{user.fullName}</b> 
     
     if (user.email) 
         p Email: <b>#{user.email}</b> 
 
     if (user.phone) 
-        p Số điện thoại: <b>#{user.phone}</b> 
+        p Phone Number: <b>#{user.phone}</b> 
     
     p 
-        span Trạng thái: 
+        span Status: 
         span 
-            <b>#{user.status === "active" ? "Hoạt động" : "Dừng hoạt động"}</b>
+            <b>#{user.status === "active" ? "Active" : "Inactive"}</b>
 
     if (role.title) 
-        p Phân quyền: <b>#{role.title}</b>
+        p Role: <b>#{role.title}</b>
     
     a(
         href=`${prefixAdmin}/my-account/edit`
         class="btn btn-primary"
-    ) Chỉnh sửa thông tin
+    ) Edit Information

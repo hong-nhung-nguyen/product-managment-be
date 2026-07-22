@@ -2,10 +2,10 @@ extends ../../layouts/default.pug
 
 block main 
     if(role.permissions.includes("accounts_view"))
-        h1(class="mb-4") Danh sách tài khoản 
+        h1(class="mb-4") Account List
 
         .card.mb-3 
-            .card-header Danh sách 
+            .card-header Account List
             .card-body 
                 .row 
                     .col-8 
@@ -14,20 +14,20 @@ block main
                             a(
                                 href=`${prefixAdmin}/accounts/create`
                                 class="btn btn-outline-success"
-                            ) + Thêm mới
+                            ) + Create New
         
                 table(
                     class="table table-hover table-sm mt-4"
                 )
                     thead 
                         tr 
-                            th STT 
-                            th Avatar
-                            th Họ tên
-                            th Phân quyền
+                            th # 
+                            th Profile Picture
+                            th Full Name
+                            th Role
                             th Email
-                            th Trạng thái 
-                            th Hành động
+                            th Status
+                            th Actions
                     
                     tbody 
                         each item, index in records
@@ -37,7 +37,7 @@ block main
                                 td 
                                     img(
                                         src=item.avatar
-                                        alt=`sản phẩm ${index + 1}` 
+                                        alt=`profile ${index + 1}` 
                                         width="100px"
                                         height="auto"
                                     )
@@ -55,32 +55,32 @@ block main
                                             data-status="active"
                                             data-id=item.id
                                             button-change-status
-                                        ) Hoạt động
+                                        ) Active
                                     else 
                                         a.badge.bg-danger(
                                             href="javascript:;"
                                             data-status="inactive"
                                             data-id=item.id
                                             button-change-status
-                                        ) Dừng hoạt động
+                                        ) Inactive
                                 td  
                                     a(
                                         href=`${prefixAdmin}/accounts/${item.id}`
                                         class="btn btn-secondary btn-sm"
-                                    ) Chi tiết
+                                    ) Details
 
                                     if(role.permissions.includes("accounts_edit"))
                                         a(
                                             href=`${prefixAdmin}/accounts/edit/${item.id}`
                                             class="btn btn-warning btn-sm ms-1"
-                                        ) Sửa
+                                        ) Edit
                                     
                                     if(role.permissions.includes("accounts_delete"))
                                         button(
                                             class="btn btn-danger btn-sm ms-1"
                                             button-delete
                                             data-id=item.id
-                                        ) Xóa 
+                                        ) Delete
         
         //- +pagination(pagination)
 

@@ -20,7 +20,7 @@ module.exports.registerPost = async (req, res) => {
     const emailExist = await User.findOne({ email: email });
 
     if(emailExist) {
-        req.flash("error", "Email đã tồn tại");
+        req.flash("error", "Email already exists");
         res.redirect("/user/register");
         return;
     } 
@@ -38,7 +38,7 @@ module.exports.registerPost = async (req, res) => {
 // [GET] /user/login
 module.exports.login = async (req, res) => {
     res.render("client/pages/user/login", {
-        pageTitle: "Đăng nhập"
+        pageTitle: "Login"
     })
 }
 
@@ -52,13 +52,13 @@ module.exports.loginPost = async (req, res) => {
     });
 
     if(!user) {
-        req.flash("error", "Email không tồn tại");
+        req.flash("error", "Email does not exist");
         res.redirect("/user/login");
         return;
     }
 
     if(user.password !== md5(password)) {
-        req.flash("error", "Mật khẩu không chính xác");
+        req.flash("error", "Password is incorrect");
         res.redirect("/user/login");
         return;
     }
@@ -91,7 +91,7 @@ module.exports.logout = async (req, res) => {
 // [GET] user/password/forgot
 module.exports.forgotPassword = async (req, res) => {
     res.render("client/pages/user/forgot-password", {
-        pageTitle: "Lấy lại mật khẩu"
+        pageTitle: "Forgot Password"
     })
 }
 
@@ -104,7 +104,7 @@ module.exports.forgotPasswordPost = async (req, res) => {
     });
 
     if(!user) {
-        req.flash("error", "Email không tồn tại!");
+        req.flash("error", "Email does not exist!");
         res.redirect("/user/password/forgot");
         return
     }
@@ -122,8 +122,8 @@ module.exports.forgotPasswordPost = async (req, res) => {
     await forgotPassword.save();
 
     // If email exists then send OTP via email
-    const subject = "Mã OTP xác minh lấy lại mật khẩu";
-    const html = `Mã OTP lấy lại mật khẩu là <b>${otp}</b>. Thời hạn sử dụng là 3 phút`;
+    const subject = "Forgot Password OTP";
+    const html = `Forgot Password OTP: <b>${otp}</b>. Thời hạn sử dụng là 3 phút`;
     sendMailHelper.sendMail(email, subject, html);
 
     // if user then send OTP via email
@@ -136,7 +136,7 @@ module.exports.otp = async (req, res) => {
     const email = req.query.email; 
 
     res.render("client/pages/user/otp-password", {
-        pageTitle: "Nhập mã OTP",
+        pageTitle: "Enter OTP",
         email: email
     })
 }
@@ -152,7 +152,7 @@ module.exports.otpPost = async (req, res) => {
     });
  
     if(!otpValid) {
-        req.flash("error", "Mã OTP không chính xác!");
+        req.flash("error", "OTP is incorrect!");
         res.redirect(`/user/password/otp?email=${email}`);
         return;
     }
@@ -171,7 +171,7 @@ module.exports.otpPost = async (req, res) => {
 // [GET] user/password/reset
 module.exports.reset = async (req, res) => {
     res.render("client/pages/user/reset-password", {
-        pageTitle: "Đổi mật khẩu"
+        pageTitle: "Reset Password"
     })
 }
 
@@ -194,7 +194,7 @@ module.exports.resetPost = async (req, res) => {
             password: md5(newPassword)
         });
 
-        req.flash("success", "Đổi mật khẩu thành công");
+        req.flash("success", "Password reset successfully");
         res.redirect("/user/login");
 
     }
@@ -206,7 +206,7 @@ module.exports.resetPost = async (req, res) => {
 // [GET] user/info
 module.exports.info = async (req, res) => {
     res.render("client/pages/user/info", {
-        pageTitle: "Thông tin tài khoản",
+        pageTitle: "User Info",
     })
 }
 

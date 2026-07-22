@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug 
 
 block main 
-    h1 Cài đặt chung 
+    h1 General Settings 
 
     +alert-error(5000)
     +alert-success(5000)
@@ -13,7 +13,7 @@ block main
         enctype="multipart/form-data"
     )
         div(class="form-group mb-3")
-            label(for="websiteName") Tên website 
+            label(for="websiteName") Website Name 
             input(
                 type="text"
                 class="form-control"
@@ -42,7 +42,7 @@ block main
             )
         
         div(class="form-group mb-3")
-            label(for="phone") Số điện thoại 
+            label(for="phone") Phone Number 
             input(
                 type="text"
                 class="form-control"
@@ -62,7 +62,7 @@ block main
             )
         
         div(class="form-group mb-3")
-            label(for="address") Địa chỉ 
+            label(for="address") Address 
             input(
                 type="text"
                 class="form-control"
@@ -85,4 +85,4 @@ block main
             button(
                 type="submit"
                 class="btn btn-primary"
-            ) Cập nhật
+            ) Update

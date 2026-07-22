@@ -11,7 +11,7 @@ mixin table-tree(records, level = 1)
                         td 
                             img(
                                 src=item.thumbnail
-                                alt=`sản phẩm ${index + 1}` 
+                                alt=`product ${index + 1}` 
                                 width="100px"
                                 height="auto"
                             )
@@ -36,31 +36,31 @@ mixin table-tree(records, level = 1)
                                     data-status="active"
                                     data-id=item.id
                                     button-change-status
-                                ) Hoạt động
+                                ) Active
                             else 
                                 a.badge.bg-danger(
                                     href="javascript:;"
                                     data-status="inactive"
                                     data-id=item.id
                                     button-change-status
-                                ) Dừng hoạt động
+                                ) Inactive
                         td  
                             a(
                                 href=`${prefixAdmin}/products-category/detail/${item.id}`
                                 class="btn btn-secondary btn-sm"
-                            ) Chi tiết
+                            ) Detail
 
                             if(role.permissions.includes("products-category_edit"))
                                 a(
                                     href=`${prefixAdmin}/products-category/edit/${item.id}`
                                     class="btn btn-warning btn-sm"
-                                ) Sửa
+                                ) Edit
                             
                             if(role.permissions.includes("products-category_delete"))
                                 button(
                                     class="btn btn-danger btn-sm ms-1"
                                     button-delete
                                     data-id=item.id
-                                ) Xóa
+                                ) Delete
                         if (item.children && item.children.length > 0)
                             +table-tree(item.children, level + 1)

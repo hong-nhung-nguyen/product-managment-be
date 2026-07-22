@@ -25,7 +25,7 @@ module.exports.index = async (req, res) => {
     // End Fetch the Latest Products
 
     res.render("client/pages/home/index", {
-        pageTitle: "Trang chủ",
+        pageTitle: "Home",
         featuredRecords: newProducts,
         latestProducts: latestProducts
     });

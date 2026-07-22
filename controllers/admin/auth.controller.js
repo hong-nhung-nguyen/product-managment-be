@@ -10,7 +10,7 @@ module.exports.login = async (req, res) => {
         res.redirect(`${systemConfig.prefixAdmin}/dashboard`);
     } else {
         res.render("admin/pages/auth/login.pug", {
-        pageTitle: "Trang đăng nhập",
+        pageTitle: "Login",
     })
     }
 }
@@ -26,19 +26,19 @@ module.exports.loginPost = async (req, res) => {
         });
 
         if(!user) {
-            req.flash("error", "Tài khoản không tồn tại");
+            req.flash("error", "Account does not exist");
             res.redirect(`${systemConfig.prefixAdmin}/auth/login`);
             return;
         }
 
         if(user.password !== md5(password)){
-            req.flash("error", "Mật khẩu không chính xác");
+            req.flash("error", "Password is incorrect");
             res.redirect(`${systemConfig.prefixAdmin}/auth/login`);
             return;
         }
         
         if(user.status === "inactive") {
-            req.flash("error", "Tài khoản đã bị khóa");
+            req.flash("error", "Account is locked");
             res.redirect(`${systemConfig.prefixAdmin}/auth/login`);
             return;
         }

@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main 
-    h1(class="mb-4") Phân quyền
+    h1(class="mb-4") Permissions
 
     +alert-success(5000)
     +alert-error(5000)
@@ -17,7 +17,7 @@ block main
                 type="submit"
                 class="btn btn-primary mb-3"
                 button-submit
-            ) Cập nhật 
+            ) Update 
         
         table(
             class="table table-hover table-sm"
@@ -25,7 +25,7 @@ block main
         )
             thead 
                 tr 
-                    th Tính năng 
+                    th Feature 
                     each record in records 
                         th(class="text-center") #{record.title}
             tbody 
@@ -36,24 +36,24 @@ block main
                             input(type="text" value=record.id)
                 tr 
                     td(colspan="4")
-                        b Danh mục sản phẩm 
+                        b Product Categories
                 tr(data-name="products-category_view")
-                    td Xem 
+                    td View 
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="products-category_create")
-                    td Thêm mới
+                    td Add
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="products-category_edit")
-                    td Chỉnh sửa
+                    td Edit
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="products-category_delete")
-                    td Xóa
+                    td Delete
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
@@ -61,24 +61,24 @@ block main
 
                 tr 
                     td(colspan="4")
-                        b Sản phẩm 
+                        b Products 
                 tr(data-name="products_view")
-                    td Xem 
+                    td View 
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="products_create")
-                    td Thêm mới
+                    td Add
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="products_edit")
-                    td Chỉnh sửa
+                    td Edit
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="products_delete")
-                    td Xóa
+                    td Delete
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
@@ -86,24 +86,24 @@ block main
 
                 tr 
                     td(colspan="4")
-                        b Nhóm quyền
+                        b Role Groups
                 tr(data-name="roles_view")
-                    td Xem 
+                    td View 
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="roles_create")
-                    td Thêm mới
+                    td Add
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="roles_edit")
-                    td Chỉnh sửa
+                    td Edit
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="roles_delete")
-                    td Xóa
+                    td Delete
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
@@ -111,14 +111,14 @@ block main
 
                 tr 
                     td(colspan="4")
-                        b Phân quyền
+                        b Permissions
                 tr(data-name="permissions_view")
-                    td Xem 
+                    td View 
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="permissions_edit")
-                    td Chỉnh sửa
+                    td Edit
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
@@ -126,24 +126,24 @@ block main
 
                 tr 
                     td(colspan="4")
-                        b Tài khoản
+                        b Accounts
                 tr(data-name="accounts_view")
-                    td Xem 
+                    td View 
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="accounts_create")
-                    td Thêm mới
+                    td Add
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="accounts_edit")
-                    td Chỉnh sửa
+                    td Edit
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")
                 tr(data-name="accounts_delete")
-                    td Xóa
+                    td Delete
                     each record, index in records 
                         td(class="text-center")
                             input(type="checkbox")

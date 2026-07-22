@@ -20,7 +20,7 @@ module.exports.index = async (req, res) => {
     }
 
     res.render("client/pages/search/index", {
-        pageTitle: "Kết quả tìm kiếm",
+        pageTitle: "Search Results",
         products: newProducts
     })
 }

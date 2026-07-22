@@ -1,14 +1,14 @@
 extends ../../layouts/default.pug 
 
 block main 
-    h1(class="mb-4") Thêm mới nhóm quyền 
+    h1(class="mb-4") Add New Role Group 
 
     form(
         action=`${prefixAdmin}/roles/create`
         method="POST"
     )
         div(class="form-group")
-            label(for="title") Tiêu đề
+            label(for="title") Title
             input(
                 type="text"
                 class="form-control"
@@ -17,7 +17,7 @@ block main
                 required
             )
         div(class="form-group")
-            label(for="desc") Mô tả
+            label(for="desc") Description
             input(
                 type="text"
                 class="form-control"
@@ -28,5 +28,5 @@ block main
             button(
                 type="submit"
                 class="btn btn-primary mt-4"
-            ) Tạo mới
+            ) Create
     
