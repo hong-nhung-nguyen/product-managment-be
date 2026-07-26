@@ -1,25 +1,64 @@
-extends ../../layouts/default.pug 
-include ../../mixins/box-head.pug
+extends ../../layouts/default.pug
 include ../../mixins/product-layout.pug
 
-block main 
-    .section-products-featured.my-5 
-        .container 
-            //- .row 
-            //-     .col-12 
-            //-         +box-head("Home")
-            .row 
-                .col-12 
-                    +box-head("Featured Products")
-            
-            +product-grid(featuredRecords)
-    
+block main
+    .home-hero.py-5
+        .container
+            .row.align-items-center
+                .col-lg-7
+                    .hero-copy
+                        span.hero-tag New Arrival
+                        h1.hero-title Spring 2024 Collection
+                        p.hero-text Discover modern style and minimalist essentials for every day.
+                        .hero-actions.mt-4
+                            a.btn.btn-success.btn-lg(href="/products") Shop Now
+                            a.btn.btn-outline-secondary.btn-lg.ms-3(href="/products?filter=new") Explore
+                .col-lg-5
+                    .hero-cards
+                        .promo-card.p-4.mb-3.rounded.shadow-sm
+                            .promo-badge.text-success 50% OFF
+                            strong.mb-2 On selected accessories
+                            a.promo-link(href="/products?discount=50") View More →
+                        .promo-card.p-4.rounded.shadow-sm.border
+                            .promo-badge.text-secondary Free Shipping
+                            strong.mb-2 On orders over 500K
+                            a.promo-link(href="/policy/shipping") Read Policy →
 
-    .section-products-latest.my-5 
-        .container 
-            .row 
-                .col-12 
-                    +box-head("Latest Products")
-            
+    .section-overview.py-5
+        .container
+            .row.g-3
+                .col-md-6
+                    .feature-box.p-4.rounded.shadow-sm
+                        h5 New Collection
+                        p Get the latest seasonal fashion with premium quality.
+                .col-md-6
+                    .feature-box.p-4.rounded.shadow-sm
+                        h5 Fast Delivery
+                        p Free shipping for orders over 500K.
+
+    .section-products-featured.py-5
+        .container
+            .d-flex.align-items-center.justify-content-between.mb-4
+                h2.section-title Featured Products
+                a.btn.btn-link(href="/products") See all
+            +product-grid(featuredRecords)
+
+    .section-products-latest.py-5
+        .container
+            .d-flex.align-items-center.justify-content-between.mb-4
+                h2.section-title Latest Products
+                a.btn.btn-link(href="/products?sort=latest") View all
             +product-grid(latestProducts)
+
+    .newsletter-section.py-5
+        .container
+            .newsletter-card.p-4.rounded.shadow-sm
+                .row.align-items-center
+                    .col-md-7
+                        h3.mb-2 Subscribe for updates
+                        p.mb-0 Get 10% off your first order.
+                    .col-md-5
+                        form(action="/newsletter" method="POST" class="d-flex gap-2")
+                            input.form-control(type="email" name="email" placeholder="Enter your email")
+                            button.btn.btn-success(type="submit") Send
                 

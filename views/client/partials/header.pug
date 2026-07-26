@@ -1,52 +1,44 @@
 include ../mixins/sub-menu.pug
 
-header.header 
-    .container 
-        .row.align-items-center 
-            .col-3 
-                .inner-logo 
-                    a(href="")
-                        img(src=settingGeneral.logo, alt=settingGeneral.websiteName, width="70px")
+header.header
+    .container
+        .row.align-items-center
+            .col-3
+                .inner-logo
+                    a(href="/")
+                        if settingGeneral.logo
+                            img(src=settingGeneral.logo, alt=settingGeneral.websiteName, width="70px")
+                        else
+                            strong #{settingGeneral.websiteName}
 
-            .col-5 
-                form(
-                    action="/search"
-                    method="GET"
-                )      
-                    div(class="form-group d-flex mb-0")
-                        input(
-                            type="text"
-                            placeholder="Search keyword"
-                            class="form-control"
-                            name="keyword"
-                        )
-                        button(
-                            type="submit"
-                            class="btn btn-primary"
-                        ) Search
-            
+            .col-5
+                form(action="/search" method="GET")
+                    .form-group.d-flex.mb-0
+                        input(type="text" placeholder="Search products..." class="form-control" name="keyword" value=keyword)
+                        button(type="submit" class="btn btn-success") Search
+
             .col-4
-                .inner-menu 
-                    ul 
-                        li 
+                .inner-menu
+                    ul
+                        li
                             a(href="/") Home
 
                         li(class="sub-menu")
-                            a(href="/products") Products
+                            a(href="/products") Categories
                             - const pathProduct = "/products";
                             +sub-menu(layoutProductsCategory, pathProduct)
                         
-                        li 
+                        li
                             a(href="/cart") Cart (#{miniCart ? miniCart.totalQuantity : 0})
                         
-                        if(user)
-                            li 
+                        if user
+                            li
                                 a(href="/user/info") #{user.fullName}
-                            li 
+                            li
                                 a(href="/user/logout") Logout
-                        else 
-                            li 
-                                a(href="/user/login") Login 
-                            li 
+                        else
+                            li
+                                a(href="/user/login") Login
+                            li
                                 a(href="/user/register") Register
                             

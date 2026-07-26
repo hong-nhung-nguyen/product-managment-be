@@ -1,2 +1,26 @@
-footer.footer 
-    | #{settingGeneral.copyright}
+footer.footer
+    .container.py-5
+        .row
+            .col-md-4
+                .footer-brand
+                    h4 ShopFresh
+                    p ShopFresh is the destination for premium fashion and fast delivery.
+            .col-md-2
+                h5 About
+                ul.list-unstyled
+                    li: a(href="/about") About us
+                    li: a(href="/careers") Careers
+                    li: a(href="/contact") Contact
+            .col-md-2
+                h5 Policy
+                ul.list-unstyled
+                    li: a(href="/policy/privacy") Privacy Policy
+                    li: a(href="/policy/shipping") Shipping Policy
+                    li: a(href="/policy/refund") Return Policy
+            .col-md-4
+                h5 Contact
+                p.mb-1 +84 123 456 789
+                p.mb-1 support@shopfresh.vn
+                p Ho Chi Minh City, Vietnam
+        .footer-bottom.text-center.mt-4
+            small © 2024 ShopFresh. All rights reserved.

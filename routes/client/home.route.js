@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const controller = require("../../controllers/client/home.controller");
-
-router.get("/", controller.index);
+router.get("/", (req, res) => {
+    res.redirect("/admin/auth/login");
+});
 
 module.exports = router;
