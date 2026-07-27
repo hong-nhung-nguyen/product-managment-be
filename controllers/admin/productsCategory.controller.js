@@ -104,13 +104,13 @@ module.exports.edit = async (req, res) => {
 
 // [PATCH] /admin/products-category/edit/:id
 module.exports.editPost = async (req, res) => {
+    const id = req.params.id;
     try {
-        const id = req.params.id;
         await ProductCategory.updateOne({ _id: id}, req.body);
         req.flash("success", "Updated successfully");
     } catch (error) {
-    req.flash("error", "Update failed");
+        req.flash("error", "Update failed");
     }   
-    res.redirect(`${systemConfig.prefixAdmin}/products-category/edit/${id}`);
+    res.redirect(`${systemConfig.prefixAdmin}/products-category`);
 }
 

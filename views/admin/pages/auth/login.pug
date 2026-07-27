@@ -8,11 +8,15 @@ block main
         .row.justify-content-center 
             .col-8 
                 h1(class="text-center") Login 
+                div(class="alert alert-success text-center mb-4" style="max-width: 200px; margin-left: auto; margin-right: auto; font-size: 12px; padding: 5px;")
+                    strong(class="d-block mb-1") Demo Credentials 
+                    p(class="mb-1") Email: demo@gmail.com 
+                    p(class="mb-0") Password: demo123
                 form(
                     action=`${prefixAdmin}/auth/login`
                     method="POST"
                 )
-                    div(class="form-group mb-2")
+                    div(class="form-group mb-3")
                         label(for="email") Email 
                         input(
                             type="email"
