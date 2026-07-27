@@ -36,7 +36,8 @@ const port = process.env.PORT;
 app.use(methodOverride("_method"));
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
+app.use(bodyParser.json({ limit: '5mb' }));
 
 // to use pug
 app.set("views", `${__dirname}/views`);

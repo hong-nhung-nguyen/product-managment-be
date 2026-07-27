@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const upload = multer();
+const upload = multer({ limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB limit
 
 const controller = require("../../controllers/admin/productsCategory.controller");
 const validate = require("../../validates/admin/productsCategory.validate");

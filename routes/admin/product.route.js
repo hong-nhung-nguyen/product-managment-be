@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 // const storageMulter = require("../../helpers/storageMulter");
 // const upload = multer({ storage: storageMulter() });
-const upload = multer();
+const upload = multer({ limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB limit
 
 
 const controller = require("../../controllers/admin/product.controller")
